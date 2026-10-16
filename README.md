@@ -4,6 +4,13 @@ Reference implementation of TFST, a spiking transformer for biosignal
 classification, evaluated on four EEG/ECG benchmarks: **ADFTD**, **APAVA**,
 **PTB**, and **PTB-XL**.
 
+<p align="center">
+  <img src="figures/Deployment_Pipeline.png" alt="TFST evaluation pipeline" width="100%">
+</p>
+<p align="center"><em>Evaluation pipeline: EEG (ADFTD, APAVA) and ECG (PTB, PTB-XL)
+datasets, TFST deployed on the MindCore FPGA, and comparison against RTX A5000
+and Jetson Orin NX.</em></p>
+
 The model embeds a multivariate signal with a time-fidelity module, applies a
 stack of spiking encoder blocks, and classifies the time-averaged output. Two
 spiking attention mechanisms are provided:
@@ -12,6 +19,20 @@ spiking attention mechanisms are provided:
 | --- | --- |
 | `MLSA` (default) | Masked Logical Spiking Attention. Boolean AND routing between Q, K and V; multiplication-free. |
 | `MRHA` | Mixed Routing/Hamming Attention. Half the heads use the boolean route, half use a Hamming-distance route. |
+
+<p align="center">
+  <img src="figures/TFST_Architecture.png" alt="TFST architecture" width="100%">
+</p>
+<p align="center"><em>TFST architecture: the time-fidelity module (TFM) feeds L
+spiking encoder blocks (HASA attention + MLP, with SEW shortcuts) and a
+classification head.</em></p>
+
+<p align="center">
+  <img src="figures/TFM_HASA.png" alt="TFM and HASA attention (MLSA / MRHA)" width="100%">
+</p>
+<p align="center"><em>The time-fidelity module (TFM) and the HASA attention block,
+with its two variants: MLSA (AND routing) and MRHA (AND routing on half the heads,
+Hamming routing on the other half).</em></p>
 
 ## Installation
 
@@ -96,6 +117,7 @@ model/tfst.py         TFST model, registered with timm as "TFS"
 module/tfm.py         TF_Module — time-fidelity signal embedding
 module/hasa_mlp.py    spiking attention (MLSA / MRHA) and MLP blocks
 conf/                 per-dataset YAML configs
+figures/              README figures
 ```
 
 ## Citation
