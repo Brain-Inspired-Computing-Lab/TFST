@@ -1,0 +1,20 @@
+# Datasets and experiment artifacts
+data/
+output/
+*.pth
+*.pth.tar
+*.npy
+*.npz
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+venv/
+.venv/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store

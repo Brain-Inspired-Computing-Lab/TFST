@@ -1,0 +1,28 @@
+# Dataset / Model parameters
+data_dir: ./data/PTB-XL
+dataset: ptbxl
+in_channels: 12
+num_classes: 5
+num_heads: 4
+time_steps: 250
+layer: 1
+dim: 48 # 12 * 4
+mlp_ratio: 4 # hidden_dim = 336
+
+# Misc
+seed: 42
+batch_size: 512
+val_batch_size: 512
+lr: 1e-3
+min_lr: 1e-5
+sched: cosine
+weight_decay: 6e-2
+epochs: 100
+cooldown_epochs: 10
+warmup_epochs: 20
+warmup_lr: 1e-6
+opt: AdamW
+workers: 8
+
+# Ablation Studies
+downsize_factor: 1
